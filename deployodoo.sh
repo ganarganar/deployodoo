@@ -145,3 +145,16 @@ service odoo status
 #//lverificar que se encuentre activo el puerto 8069 en el firewall de webserver
 #//ldirigirse a la siguiente dirección
 #//lhttp:#//direccion_de_ip:8069/web/database/selector
+
+#// Agregar la carpecha cache a pyafipws
+mkdir /usr/local/lib/python3.8/dist-packages/pyafipws/cache
+chmod 777 -R /usr/local/lib/python3.8/dist-packages/pyafipws/cache
+
+#// Agregar configuración a OpenSSL
+echo [ default_conf ] >> /etc/ssl/openssl.cnf
+echo ssl_conf = ssl_sect >> /etc/ssl/openssl.cnf
+echo [ssl_sect] >> /etc/ssl/openssl.cnf
+echo system_default = system_default_sect >> /etc/ssl/openssl.cnf
+echo [system_default_sect] >> /etc/ssl/openssl.cnf
+echo MinProtocol = TLSv1.2
+echo CipherString = DEFAULT:@SECLEVEL=1 >> /etc/ssl/openssl.cnf
