@@ -1,31 +1,30 @@
 ##// https://ganargan.ar INSTALACIÓN ODOO 13
-##// Renombramos el actual source.list y descargamos una copia de source.list por default
+##// Renombramos el actual source.list y descargamos una copia de source.list por default.
 mv /etc/apt/sources.list /etc/apt/sources.list.old
-wget -P /etc/apt/ https://gist.githubusercontent.com/vczb/694d55169f67a3b2ad20df1385a3e983/raw/7f73c9b98bf70b0c0d87d49301a552f78d5efd86/sources.list
-##cp /usr/share/doc/apt/examples/sources.list /etc/apt/sources.list
-##// Se realiza update/upgrade
+wget -P /etc/apt/ https://github.com/ganarganar/deployodoo/blob/master/sources.list
+##// Se realiza update/upgrade.
 apt-get update
 apt-get upgrade
-##// Se agrega usuario, grupo y carpeta odoo
+##// Se agrega usuario, grupo y carpeta odoo.
 adduser --system --quiet --shell=/bin/bash --home=/opt/odoo --gecos 'odoo' --group odoo
-#// Se crea los directorios para odoo tanto directorio de instalación como el log
+#// Se crea los directorios para odoo tanto directorio de instalación como el log.
 mkdir /etc/odoo && mkdir /var/log/odoo
-#// Se instala el motor de base de datos PostgreSQL
+#// Se instala el motor de base de datos PostgreSQL.
 apt-get install postgresql postgresql-server-dev-12
-#// Instalación de Libreria pip3
+#// Instalación de Libreria pip3.
 sudo apt-get install -y python3 python3-pip git wget
-#// Instalación de librerías de python
+#// Instalación de librerías de python.
 apt-get install build-essential python3-pil python3-lxml python3-ldap3 python3-dev python3-setuptools npm nodejs gdebi libldap2-dev libsasl2-dev libxml2-dev libxslt1-dev libjpeg-dev python3-venv python3-wheel libxslt-dev libzip-dev swig node-less gcc libpq-dev python-dev libffi-dev libssl-dev libcups2-dev -y
-#// Instalación Dependencias PIP
+#// Instalación Dependencias PIP.
 pip3 install PyPDF2 Werkzeug==0.11.15 python-dateutil reportlab psycopg2-binary pyOpenSSL
-#// Clonación el repositorio de instalación desde odoo oficial
+#// Clonación el repositorio de instalación desde odoo oficial.
 git clone --depth 1 --branch 13.0 https://github.com/odoo/odoo /opt/odoo/odoo
-#// damos permiso a la carpeta donde va a estar la aplicación
+#// damos permiso a la carpeta donde va a estar la aplicación.
 chown odoo:odoo /opt/odoo/ -R
 chown odoo:odoo /var/log/odoo/ -R
-#// Se instalan los requerimientos de odoo 
+#// Se instalan los requerimientos de odoo.
 pip3 install -r /opt/odoo/odoo/requirements.txt
-#// Se clonan los paquetes de la localización argentina y se instalan sus requerimientos
+#// Se clonan los paquetes de la localización argentina y se instalan sus requerimientos.
 mkdir /opt/odoo/odoo/custom/
 mkdir /opt/odoo/odoo/custom/src
 git clone --depth 1 --branch 13.0 https://github.com/ganarganar/pos /opt/odoo/odoo/custom/src/ganarganar-pos
@@ -101,28 +100,28 @@ git clone --depth 1 --branch 13.0 https://github.com/OCA/timesheet /opt/odoo/odo
 git clone --depth 1 --branch 13.0 https://github.com/OCA/web /opt/odoo/odoo/custom/src/oca-web
 git clone --depth 1 --branch 13.0 https://github.com/OCA/website /opt/odoo/odoo/custom/src/oca-website
 git clone --depth 1 --branch 13.0 https://github.com/OCA/wms /opt/odoo/odoo/custom/src/oca-wms
-#// Se instalan los requerimientos de módulos de la localización argetnina
+#// Se instalan los requerimientos de módulos de la localización argetnina.
 pip3 install -r /opt/odoo/odoo/custom/src/ingadhoc-odoo-argentina/requirements.txt
 pip3 install -r /opt/odoo/odoo/custom/src/ingadhoc-odoo-argentina-ce/requirements.txt
-#// Se instala el gestor de paquetes less y plugins
+#// Se instala el gestor de paquetes less y plugins.
 npm install -g rtlcss
 npm install -g less less-plugin-clean-css -y
-#// Se crea un link simbólico (puede dar error si ya ya se creó el link)
+#// Se crea un link simbólico (puede dar error si ya ya se creó el link).
 ln -s /usr/bin/nodejs /usr/bin/node
-#//Se instala WkHTML2PDF
+#//Se instala WkHTML2PDF.
 wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
 dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb
 apt-get install -f
-#//Se instala fuentes xfonts
+#//Se instala fuentes xfonts.
 cd /usr/bin
 apt-get install xfonts-base xfonts-75dpi -y
-#// nos posicionamos en la carpeta tmp e instalamos la librería libpng agregando repositorio primero
+#// Se agrega repositorio y se instala desde la carpeta /tmp la librería libpng.
 cd /tmp
 add-apt-repository ppa:linuxuprising/libpng12
 "/n"
 #//hacemos un update de la lista e instalamos la librería
 apt-get update && apt-get install libpng12-0
-#// salimos de la carpeta temp y creamos el usuario para la base de datos
+#// Se crea el usuario para la base de datos
 cd
 su - postgres -c "createuser -s odoo"
 #//se crea la configuración de odoo
