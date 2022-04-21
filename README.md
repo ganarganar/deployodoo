@@ -22,5 +22,6 @@ Pasos
 2- Dé permisos al archivo deployodoo.sh # chmod +x deployodoo.sh <br/>
 3- Ejecutar el archivo deployodoo.sh # sh deployodoo.sh <br/>
 4- Prestar atención al proceso y aceptar con Y a las consultas dse instalación <br/>
-5- agregar la siguiente linea al inicio del archivo /etc/ssl/openssl.cnf
-    openssl_conf = default_conf
+5- agregar la siguiente linea al inicio del archivo /etc/ssl/openssl.cnf <br/>
+    openssl_conf = default_conf <br/>
+6- habilitar puerto TCP 8069.
