@@ -18,7 +18,7 @@ Antes de implementar cualquiera de los módulos en la carpeta debe revisar ejecu
 
 Pasos
 
-1- Clone el repositorio en la carpeta raiz 
-2- Dé permisos al archivo deployodoo.sh # chmod +x deployodoo.sh
-3- Ejecutar el archivo deployodoo.sh # sh deployodoo.sh
-4- Prestar atención al proceso y aceptar con Y a las consultas dse instalación
+1- Clone el repositorio en la carpeta raiz <br/>
+2- Dé permisos al archivo deployodoo.sh # chmod +x deployodoo.sh <br/>
+3- Ejecutar el archivo deployodoo.sh # sh deployodoo.sh <br/>
+4- Prestar atención al proceso y aceptar con Y a las consultas dse instalación <br/>
