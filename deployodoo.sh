@@ -112,7 +112,7 @@ ln -s /usr/bin/nodejs /usr/bin/node
 wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.5/wkhtmltox_0.12.5-1.bionic_amd64.deb
 dpkg -i wkhtmltox_0.12.5-1.bionic_amd64.deb
 apt-get install -f
-#//Se instala fuentes xfonts.
+#// Se instala fuentes xfonts.
 cd /usr/bin
 apt-get install xfonts-base xfonts-75dpi -y
 #// Se agrega repositorio y se instala desde la carpeta /tmp la librería libpng.
@@ -124,29 +124,28 @@ apt-get update && apt-get install libpng12-0
 #// Se crea el usuario para la base de datos
 cd
 su - postgres -c "createuser -s odoo"
-#//se crea la configuración de odoo
+#// Se crea configuración de odoo
 su - odoo -c "/opt/odoo/odoo/odoo-bin --addons-path=/opt/odoo/odoo/addons -s --stop-after-init"
-#// se crea el archivo de configuración de odoo
+#// Se crea el archivo de configuración de odoo
 mv /opt/odoo/.odoorc /etc/odoo/odoo.conf
-#//modfificar proxy_mode logfile de forma manual el archivo /etc/odoo/odoo.conf y agregar la línea de logratate = True con los siguientes parámetros
-#//proxy_mode = True
-#//logrotate = True
-#//logfile = /var/log/odoo/odoo-server.log
-#//addons_path = /opt/odoo/odoo/addons,/opt/odoo/odoo/addons/account-payment,/opt/odoo/odoo/addons/argentina-sale,/opt/odoo/odoo/addons/odoo-argentina-ce,/opt/odoo/odoo/addons/account-financial-reporting,/opt/odoo/odoo/addons/account-financial-tools
-#//creamos el archivo de inicio de odoo y le damos permisos
+#// Modfificar proxy_mode logfile de forma manual el archivo /etc/odoo/odoo.conf y agregar la línea de logratate = True con los siguientes parámetros
+#// Proxy_mode = True
+#// logrotate = True
+#// logfile = /var/log/odoo/odoo-server.log
+#// Modificar el addons_path de forma manual el archivo /etc/odoo/odoo.conf y agregar la línea de repositorios custom que dejo en la descripción de
 cp /opt/odoo/odoo/debian/init /etc/init.d/odoo
 chmod +x /etc/init.d/odoo
-#// creamos link simbolico al inicio de odoo
+#// Se crea un link simbolico al inicio de odoo
 ln -s /opt/odoo/odoo/odoo-bin /usr/bin/odoo
-#//le decimos que levante odoo en los siguientes niveles
+#// Le decimos que levante odoo en los siguientes niveles
 update-rc.d -f odoo start 20 2 3 4 5 .
 service odoo start
 service odoo status
-#//lverificar que se encuentre activo el puerto 8069 en el firewall de webserver
-#//ldirigirse a la siguiente dirección
-#//lhttp:#//direccion_de_ip:8069/web/database/selector
+#// verificar que se encuentre activo el puerto 8069 en el firewall de webserver
+#// Dirigirse a la siguiente dirección
+#// http:#//direccion_de_ip:8069/web/database/selector
 
-#// Agregar la carpecha cache a pyafipws
+#// Agregar la carpecha cache a pyafipws y darle permisos
 mkdir /usr/local/lib/python3.8/dist-packages/pyafipws/cache
 chmod 777 -R /usr/local/lib/python3.8/dist-packages/pyafipws/cache
 
