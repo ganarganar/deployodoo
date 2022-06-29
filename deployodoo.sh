@@ -1,7 +1,7 @@
 ##// https://ganargan.ar INSTALACIÓN ODOO 13
 ##// Renombramos el actual source.list y descargamos una copia de source.list por default.
-mv /etc/apt/sources.list /etc/apt/sources.list.old
-wget -P /etc/apt/ https://github.com/ganarganar/deployodoo/blob/master/sources.list
+#mv /etc/apt/sources.list /etc/apt/sources.list.old
+#wget -P /etc/apt/ https://github.com/ganarganar/deployodoo/blob/master/sources.list
 ##// Se realiza update/upgrade.
 apt-get update
 apt-get upgrade
@@ -27,7 +27,7 @@ pip3 install -r /opt/odoo/odoo/requirements.txt
 #// Se clonan los paquetes de la localización argentina y se instalan sus requerimientos.
 mkdir /opt/odoo/odoo/custom/
 mkdir /opt/odoo/odoo/custom/src
-git clone --depth 1 --branch 13.0 https://github.com/ganarganar/pos /opt/odoo/odoo/custom/src/ganarganar-pos
+git clone https://github.com/ganarganar/pos /opt/odoo/odoo/custom/src/ganarganar-pos
 git clone --depth 1 --branch 13.0 https://github.com/ganarganar/theme-clarico-vega /opt/odoo/odoo/custom/src/ganarganar-theme-clarico-vega
 git clone --depth 1 --branch 13.0 https://github.com/ingadhoc/aeroo_reports /opt/odoo/odoo/custom/src/ingadhoc-aeroo_reports
 git clone --depth 1 --branch 13.0 https://github.com/ingadhoc/account-financial-tools /opt/odoo/odoo/custom/src/ingadhoc-account-financial-tools
@@ -150,10 +150,10 @@ mkdir /usr/local/lib/python3.8/dist-packages/pyafipws/cache
 chmod 777 -R /usr/local/lib/python3.8/dist-packages/pyafipws/cache
 
 #// Agregar configuración a OpenSSL
-echo [ default_conf ] >> /etc/ssl/openssl.cnf
+echo [default_conf] >> /etc/ssl/openssl.cnf
 echo ssl_conf = ssl_sect >> /etc/ssl/openssl.cnf
 echo [ssl_sect] >> /etc/ssl/openssl.cnf
 echo system_default = system_default_sect >> /etc/ssl/openssl.cnf
 echo [system_default_sect] >> /etc/ssl/openssl.cnf
-echo MinProtocol = TLSv1.2
-echo CipherString = DEFAULT:@SECLEVEL=1 >> /etc/ssl/openssl.cnf
+echo MinProtocol = TLSv1.2 >> /etc/ssl/openssl.cnf
+echo CipherString = DEFAULT@SECLEVEL=1 >> /etc/ssl/openssl.cnf
