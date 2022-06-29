@@ -156,4 +156,4 @@ echo [ssl_sect] >> /etc/ssl/openssl.cnf
 echo system_default = system_default_sect >> /etc/ssl/openssl.cnf
 echo [system_default_sect] >> /etc/ssl/openssl.cnf
 echo MinProtocol = TLSv1.2 >> /etc/ssl/openssl.cnf
-echo CipherString = DEFAULT@SECLEVEL=1 >> /etc/ssl/openssl.cnf
+echo CipherString = DEFAULT@SECLEVEL=2 >> /etc/ssl/openssl.cnf
