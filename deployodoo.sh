@@ -28,7 +28,7 @@ pip3 install -r /opt/odoo/odoo/requirements.txt
 mkdir /opt/odoo/odoo/custom/
 mkdir /opt/odoo/odoo/custom/src
 git clone https://github.com/ganarganar/pos /opt/odoo/odoo/custom/src/ganarganar-pos
-git clone --depth 1 --branch 13.0 https://github.com/ganarganar/theme-clarico-vega /opt/odoo/odoo/custom/src/ganarganar-theme-clarico-vega
+git clone https://github.com/ganarganar/theme-clarico-vega /opt/odoo/odoo/custom/src/ganarganar-theme-clarico-vega
 git clone --depth 1 --branch 13.0 https://github.com/ingadhoc/aeroo_reports /opt/odoo/odoo/custom/src/ingadhoc-aeroo_reports
 git clone --depth 1 --branch 13.0 https://github.com/ingadhoc/account-financial-tools /opt/odoo/odoo/custom/src/ingadhoc-account-financial-tools
 git clone --depth 1 --branch 13.0 https://github.com/ingadhoc/account-payment /opt/odoo/odoo/custom/src/ingadhoc-account-payment
